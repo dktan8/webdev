@@ -19,6 +19,10 @@
     </div>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
+    <div class="text-center" style="margin-left: 500px;margin-top: 20px;">
+        <?php echo $posts->links();; ?>
+
+    </div>
 
 <?php $__env->stopSection(); ?>
 

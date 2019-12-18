@@ -38,8 +38,8 @@ class PostController extends Controller
     public function store(Request $request){
         $user_id = auth()->id();
         $validatedData = $request->validate([
-                'title' => 'required|max:100',
-                'content' => 'required',
+                'title' => 'required|max:200',
+                'content' => 'required|min:5',
             ]);
         $post = new Post;
         $post->user_id = $user_id;

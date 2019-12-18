@@ -35,6 +35,9 @@ Route::post('/addCategory', 'CategoryController@addCategory')->name('addCat')->m
 
 Route::post('comments/{post_id}', 'CommentController@store')->name('add.comment')->middleware('auth');
 
-Route::get('/posts/{id}', 'PostController@show')->name('posts.show')->middleware('auth');
+Route::get('comments/edit/{id}', 'CommentController@edit')->name('edit.comment')->middleware('auth');
+
+Route::put('comments/update/{id}', 'CommentController@update')->name('update.comment')->middleware('auth');
+
 
 

@@ -43,9 +43,9 @@
 
 
 
-        <h1 class="header">
+        <h2 class="header">
            Comments
-        </h1>
+        </h2>
 
 		<?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="card-body">
@@ -53,6 +53,9 @@
           <h6 class="card-subtitle mb-2 text-muted"> <?php echo e($comment->created_at); ?> </h6>
           <p class="card-text"> <?php echo e($comment->content); ?> </p>
           <a href="<?php echo e(route('posts.show', ['id' => $post->id])); ?>" class="card-link">View Profile</a>
+          <?php if(auth()->id() == $comment->user->id): ?>
+          <a href="<?php echo e(route('edit.comment', ['id' => $comment->id])); ?>" class="card-link">Edit</a>
+          <?php endif; ?>
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

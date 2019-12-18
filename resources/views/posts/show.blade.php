@@ -44,9 +44,9 @@
 
 
 
-        <h1 class="header">
+        <h2 class="header">
            Comments
-        </h1>
+        </h2>
 
 		@foreach ($comments as $comment)
         <div class="card-body">
@@ -54,6 +54,9 @@
           <h6 class="card-subtitle mb-2 text-muted"> {{$comment->created_at}} </h6>
           <p class="card-text"> {{$comment->content}} </p>
           <a href="{{ route('posts.show', ['id' => $post->id]) }}" class="card-link">View Profile</a>
+          @if(auth()->id() == $comment->user->id)
+          <a href="{{ route('edit.comment', ['id' => $comment->id])  }}" class="card-link">Edit</a>
+          @endif
         </div>
         @endforeach
 

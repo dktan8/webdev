@@ -70,7 +70,10 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        return view('comments.edit', ['comment' => $comment]);
+
+
     }
 
     /**
@@ -80,9 +83,18 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+
+        $comment = Comment::findOrFail($id);
+
+        $validatedData = $request->validate([
+           'content' => 'required|max:255',
+        ]);
+
+        $comment->content = $validatedData['content'];
+        $comment save();
+
+        return redirect()->route('posts.show', $comment->post_id)
     }
 
     /**
