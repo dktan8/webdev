@@ -22,6 +22,9 @@
 					<div class="card-body">
 						<h2 class="card-title">{{ $post->title }}</h2>
 						<p class="card-text">{{ $post->content }}</p>
+						@if(auth()->id() == $post->user->id)
+                            <a href="{{ route('edit.post', ['id' => $post->id])  }}" class="card-link">Edit</a>
+                        @endif
 					</div>
 					<div class="card-header">
                     	<i>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</i>

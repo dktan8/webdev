@@ -12,6 +12,9 @@
         <h5 class="card-title">{{ $post->title }}</h5>
         <p class="card-text">{{ $post->content }}</p>
         <a href="{{ route('posts.show', ['id' => $post->id]) }}" class="btn btn-secondary" role="button">View Post</a>
+        @if(auth()->id() == $post->user->id)
+                  <a href="{{ route('edit.post', ['id' => $post->id])  }}" class="card-link">Edit</a>
+        @endif
       </div>
       <div class="card-footer text-muted">
         {{ date('M j, Y h:ia', strtotime($post->created_at)) }}

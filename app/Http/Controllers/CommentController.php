@@ -88,11 +88,11 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
 
         $validatedData = $request->validate([
-           'content' => 'required|max:255',
+           'content' => 'required|max:100',
         ]);
 
         $comment->content = $validatedData['content'];
-        $comment save();
+        $comment->save();
 
         return redirect()->route('posts.show', $comment->post_id);
     }

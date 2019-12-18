@@ -11,6 +11,9 @@
         <h5 class="card-title"><?php echo e($post->title); ?></h5>
         <p class="card-text"><?php echo e($post->content); ?></p>
         <a href="<?php echo e(route('posts.show', ['id' => $post->id])); ?>" class="btn btn-secondary" role="button">View Post</a>
+        <?php if(auth()->id() == $post->user->id): ?>
+                  <a href="<?php echo e(route('edit.post', ['id' => $post->id])); ?>" class="card-link">Edit</a>
+        <?php endif; ?>
       </div>
       <div class="card-footer text-muted">
         <?php echo e(date('M j, Y h:ia', strtotime($post->created_at))); ?>

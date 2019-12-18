@@ -4,17 +4,34 @@
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{ route('edit.comment', ['id' => $comment->id])}}">
+        <div class="col-md-12 col-md-offset-2">
+        <h1>Edit Post</h1>
+        <hr>
+        @if ($errors->any())
+        <div>
+        	Errors:
+        <ul>
+        @foreach ($errors->all() as $error)
+        	<div class="text-danger"><li>{{ $error }}</li></div>
+        @endforeach
+        </ul>
+        </div>
+        @endif
+        <form method="POST" action="{{ route('update.post', ['id' => $post->id])}}">
             @csrf
             @method('PUT')
             <div class="form-group">
-                <input type="title" class="form-control" aria-label="Title" aria-describedby="basic-addon2">{{$comment->title}}</input>
+                <h1>Title</h1>
+                <input name="title" class="form-control" value='{{$post->title}}' ></input>
             </div>
-                <textarea type="content" class="form-control" aria-label="Content" aria-describedby="basic-addon2">{{$comment->content}}</textarea>
+                <h2>Post Content</h2>
+                <textarea name="content" class="form-control" aria-label="Content">{{$post->content}}</textarea>
             <div>
-                <input type="submit" value="Edit Comment" class="btn btn-primary btn-lg btn-block">
+                <input type="submit" value="Edit Post" class="btn btn-primary btn-lg btn-block">
+
+            </form>
             </div>
             </div>
-        </form>
+
     </div>
 @endsection

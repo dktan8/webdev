@@ -72,7 +72,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.edit',['post' => $post]);
     }
 
     /**
@@ -84,7 +85,17 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $validatedData = $request->validate([
+            'title' => 'required|max:200',
+            'content' => 'required|min:5',
+        ]);
+
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->save();
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**

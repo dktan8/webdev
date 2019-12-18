@@ -17,10 +17,6 @@ Route::get('/', function () {
 
 
 
-Auth::routes();
-
-Route::get('/home', 'PostController@index')->name('home')->middleware('auth');
-
 Route::get('/posts', 'PostController@create')->name('posts')->middleware('auth');
 
 Route::post('posts', 'PostController@store')->name('add.post')->middleware('auth');
@@ -38,6 +34,14 @@ Route::post('comments/{post_id}', 'CommentController@store')->name('add.comment'
 Route::get('comments/edit/{id}', 'CommentController@edit')->name('edit.comment')->middleware('auth');
 
 Route::put('comments/update/{id}', 'CommentController@update')->name('update.comment')->middleware('auth');
+
+Route::get('posts/edit/{id}', 'PostController@edit')->name('edit.post')->middleware('auth');
+
+Route::put('posts/update/{id}', 'PostController@update')->name('update.post')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'PostController@index')->name('home')->middleware('auth');
 
 
 

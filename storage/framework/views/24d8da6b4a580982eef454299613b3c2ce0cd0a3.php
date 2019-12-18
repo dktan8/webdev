@@ -21,6 +21,9 @@
 					<div class="card-body">
 						<h2 class="card-title"><?php echo e($post->title); ?></h2>
 						<p class="card-text"><?php echo e($post->content); ?></p>
+						<?php if(auth()->id() == $post->user->id): ?>
+                            <a href="<?php echo e(route('edit.post', ['id' => $post->id])); ?>" class="card-link">Edit</a>
+                        <?php endif; ?>
 					</div>
 					<div class="card-header">
                     	<i><?php echo e(date('M j, Y h:ia', strtotime($post->created_at))); ?></i>
