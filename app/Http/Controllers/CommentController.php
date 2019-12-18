@@ -94,7 +94,7 @@ class CommentController extends Controller
         $comment->content = $validatedData['content'];
         $comment save();
 
-        return redirect()->route('posts.show', $comment->post_id)
+        return redirect()->route('posts.show', $comment->post_id);
     }
 
     /**
